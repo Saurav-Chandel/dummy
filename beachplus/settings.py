@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,10 +80,14 @@ WSGI_APPLICATION = 'beachplus.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase', 
-               
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("RDS_DB_NAMEEE", "dummy"),
+        "USER": os.environ.get("RDS_USERNAMEEE", "postgres"),
+        "PASSWORD": os.environ.get("RDS_PASSWORDDD", "root"),
+        "HOST": os.environ.get("RDS_HOSTNAMEEE", "127.0.0.1"),
+        "PORT": os.environ.get("DB_PORT", "5434"),
+        "TIME_ZONE": "Asia/Kolkata",
     }
 }
 
